@@ -72,6 +72,27 @@ trait ApiResponse
 
         return response()->json($response);
     }
+    
+    /**
+     * Set created response
+     *
+     * @param $message
+     * @param mixed $data
+     *
+     * @return JsonResponse
+     */
+    public function createdResponseWithResource(string $message, $data): JsonResponse
+    {
+        $response = [
+            'message' => $message,
+        ];
+
+        if (!empty($data)) {
+            $response['data'] = $data;
+        }
+
+        return response()->json($response, 201);
+    }
 
     /**
      * Set success response
