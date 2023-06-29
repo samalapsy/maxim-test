@@ -144,23 +144,7 @@ trait ApiResponse
         return response()->json($response, 500);
     }
 
-    /**
-     * Append debug data to the response data returned.
-     */
-    protected function appendDebugData($exception): array
-    {
-        return [
-            'message' => $exception->getMessage(),
-            'exception' => get_class($exception),
-            'file' => $exception->getFile(),
-            'line' => $exception->getLine(),
-            'trace' => collect($exception->getTrace())->map(function ($trace) {
-                return Arr::except($trace, ['args']);
-            })->all(),
-        ];
-    }
-
-    /**
+      /**
      * Set not found response
      *
      * @param $message
@@ -177,5 +161,21 @@ trait ApiResponse
             $response['data'] = $data;
         }
         return response()->json($response, 404);
+    }
+
+    /**
+     * Append debug data to the response data returned.
+     */
+    protected function appendDebugData($exception): array
+    {
+        return [
+            'message' => $exception->getMessage(),
+            'exception' => get_class($exception),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+            'trace' => collect($exception->getTrace())->map(function ($trace) {
+                return Arr::except($trace, ['args']);
+            })->all(),
+        ];
     }
 }
