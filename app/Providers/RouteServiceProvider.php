@@ -36,5 +36,10 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        RateLimiter::for('movie-comment', function (Request $request) {
+            $key = $request->ip() .'-'. $request->movie_id;
+            return Limit::perMinutes(config('maxim.attempt_rate_limit'), config('maxim.max_attempt'))->by($key);
+        });
     }
 }
