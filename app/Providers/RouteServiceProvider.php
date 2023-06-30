@@ -39,9 +39,7 @@ class RouteServiceProvider extends ServiceProvider
 
         RateLimiter::for('movie-comment', function (Request $request) {
             $key = $request->ip() .'-'. $request->movie_id;
-            return Limit::perMinutes(config('maxim.rate_limit'), config('maxim.max_attempt'))->by($key)->response(function (Request $request, array $headers) {
-                return response(sprintf('You can only add %s comment(s) within %s minutes to this movie.', config('maxim.max_attempt'), config('maxim.rate_limit') ), 429, $headers);
-            });;
+            return Limit::perMinutes(config('maxim.rate_limit'), config('maxim.max_attempt'))->by($key);
         });
     }
 }
