@@ -6,9 +6,12 @@ use Exception;
 use App\Services\MovieService;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CharacterResource;
+use App\Traits\Filters;
 
 class GetMovieCharactersController extends Controller
 {
+    use Filters;
+
     /**
      * Handle the incoming request.
      */
@@ -16,26 +19,14 @@ class GetMovieCharactersController extends Controller
     {
         try {
             $data = $movieService->getMovieCharacters($movie_id);
-            $gender = request('gender');
-            if ($gender && in_array(strtolower($gender), ['male', 'female', 'unknown', 'n/a'])) {
-                $data = $data->where('gender', $gender);
-            }
-    
-            $sort_by = request('sort_by');
-            $sort_direction = request('sort_direction');
-            if ($sort_by && in_array(strtolower($sort_by), ['name', 'height', 'gender']) && in_array(strtolower($sort_direction), ['asc', 'desc'])) {
-                $data = $sort_direction == 'asc' ?  $data->sortBy($sort_by) : $data->sortByDesc($sort_by);
-            }
-    
-            $characters = collect($data->all());
+            $characters = $this->filterCharacters($data);
             $total_height = 0;
-    
             return $this->successfulResponseWithCollection('API request successful', [
                 'total' => $characters->count(),
                 'total_height' => $total_height,
                 'characters' => CharacterResource::collection($characters->values())
             ]);
-        }  catch (Exception $exception) {
+        } catch (Exception $exception) {
             return $this->serverErrorResponse($exception->getMessage(), $exception);
         }
     }
