@@ -16,7 +16,7 @@ class CharacterResource extends JsonResource
     {
         return [
             "name" => $this->name,
-            "height" => cmToFeet($this->height),
+            "height" => $this->height,
             "mass" => $this->mass,
             "hair_color" => $this->hair_color,
             "skin_color" => $this->skin_color,
