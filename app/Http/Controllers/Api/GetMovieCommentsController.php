@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use Exception;
-use App\Models\Comment;
 use App\Services\MovieService;
 use App\Http\Resources\CommentResource;
 use App\Http\Controllers\Controller;
