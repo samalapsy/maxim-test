@@ -45,6 +45,7 @@ The API can be accesed on this url - https://maxim-test-dcbfcbcbf751.herokuapp.c
 ### Custom Environment Configuration 
 | Env Name          |   Value                   |   Description                                                                                                                  |
 |-------------------|---------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| CACHE_DRIVER      | redis                     | Use Redis as cache storage                                                                                                     |
 | BASE_API_URL      | https://swapi.dev/api/    | SWAPI Base API url                                                                                                             |
 | RATE_LIMIT        | 20                        | The minutes with within which a speicfied number of calls can be made. Please note that this value can be update               |
 | MAX_ATTEMPT       | 1                         | Total number of API calls that can be made by within a specific time. Please note that this value can be update                |
