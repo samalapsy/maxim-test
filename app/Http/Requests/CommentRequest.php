@@ -22,8 +22,7 @@ class CommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'movie_id' => ['required', 'numeric', 'min:1'],
-            'comment' => ['required', 'string', 'max:500'],
+            'comment' => ['required', 'string', 'min:2' ,'max:500'],
         ];
     }
 }
