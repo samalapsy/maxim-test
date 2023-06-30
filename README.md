@@ -58,6 +58,9 @@ The API can be accesed on this url - https://maxim-test-dcbfcbcbf751.herokuapp.c
 As required in the all APi calls made to the third party APIs are cached into Redis. In addition to that,  A `1 request per 20 minutes` throttle was place on the add comment API, meaning an ip address can only add 1 comment per 20 minutes to a movie.
 
 
+### Improvement
+The throttled endpoint can be improved by ensuing that throttle count is only counted when the API call is successful. i.e if an API call fails, throttle count should not be considered. However, this can be decided based on product requirement.
+
 
 ### SetUp
 Please run the following commands after pulling the codebase
