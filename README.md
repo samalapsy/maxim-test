@@ -51,6 +51,7 @@ The API can be accesed on this url - https://maxim-test-dcbfcbcbf751.herokuapp.c
 | MAX_ATTEMPT       | 1                         | Total number of API calls that can be made by within a specific time. Please note that this value can be update                |
 | CACHE_DURATION    | 5000                      | Total number of seconds the cache variable should last long for. Please note that this value can be update                     |
 | REDIS_HOST        |                           | Redis host url
+| REDIS_USERNAME    |                           | Redis server username
 | REDIS_PASSWORD    |                           | Password to your redis server
 | REDIS_PORT        |                           | Based on your redis port                              |
 
